@@ -15,9 +15,9 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
   const theme = useTheme();
-  const isXsScreen = useMediaQuery(theme.breakpoints.only('xs'));
-  const isSmScreen = useMediaQuery(theme.breakpoints.only('sm'));
-  const isMdScreen = useMediaQuery(theme.breakpoints.only('md'));
+  const isXsScreen = useMediaQuery(theme.breakpoints.only("xs"));
+  const isSmScreen = useMediaQuery(theme.breakpoints.only("sm"));
+  const isMdScreen = useMediaQuery(theme.breakpoints.only("md"));
 
   const handleNavigateClick = () => {
     navigate("/anh-algelab/laboratorios/");
@@ -27,7 +27,7 @@ const Home = () => {
     <PageContainer
       title="AlgeLab"
       sx={{
-        height: "80vh",
+        minHeight: "80vh",
         width: "100%",
         overflow: "auto",
         display: "flex",
@@ -57,7 +57,7 @@ const Home = () => {
                 flexDirection: "column",
                 justifyContent: "center",
                 mr: { md: 4, lg: 8 },
-                maxWidth: { xs: "100%", sm: "90%", md: "85%", lg: "1200px" },
+                maxWidth: "100%",
               }}
             >
               <CardContent sx={{ p: { xs: 2, sm: 3, md: 4, lg: 5 } }}>
@@ -66,8 +66,13 @@ const Home = () => {
                     color: "primary.main",
                     fontWeight: "bold",
                     mb: { xs: 1, sm: 1.5, md: 2, lg: 3 },
-                    mt: { xs: -2, sm: -3, md: -4, lg: -6 },
-                    fontSize: { xs: "16px", sm: "18px", md: "22px", lg: "28px" },
+                    mt: { xs: -1, sm: -1.5, md: -2, lg: -3 },
+                    fontSize: {
+                      xs: "1rem",
+                      sm: "1.125rem",
+                      md: "1.375rem",
+                      lg: "1.75rem",
+                    },
                     letterSpacing: { xs: 0.5, sm: 1, md: 1.5 },
                   }}
                 >
@@ -79,7 +84,12 @@ const Home = () => {
                     fontWeight: 1000,
                     textShadow: "1px 0 0 currentColor",
                     lineHeight: { xs: 1.1, sm: 1.2, md: 1.1 },
-                    fontSize: { xs: "28px", sm: "36px", md: "48px", lg: "72px" },
+                    fontSize: {
+                      xs: "1.75rem",
+                      sm: "2.25rem",
+                      md: "3rem",
+                      lg: "4.5rem",
+                    },
                     letterSpacing: { xs: -0.5, sm: -1, md: -1.5 },
                   }}
                 >
@@ -89,33 +99,45 @@ const Home = () => {
                   variant="body1"
                   sx={{
                     mb: { xs: 2, sm: 3, md: 4, lg: 5 },
-                    fontSize: { xs: "14px", sm: "16px", md: "18px", lg: "22px" },
-                    maxWidth: { xs: "100%", sm: "95%", md: "90%", lg: "80%" },
+                    fontSize: {
+                      xs: "0.875rem",
+                      sm: "1rem",
+                      md: "1.125rem",
+                      lg: "1.375rem",
+                    },
+                    maxWidth: "100%",
                     lineHeight: { xs: 1.4, sm: 1.5, md: 1.6 },
                   }}
                 >
-                  Transforme su comprensión del álgebra lineal.
-                  Laboratorios virtuales y lecturas interactivas para una experiencia inmersiva.
+                  Estudie activamente el álgebra lineal con laboratorios
+                  virtuales y lecturas interactivas
                 </Typography>
                 <Button
                   variant="outlined"
                   color="primary"
                   onClick={handleNavigateClick}
-                  size={isXsScreen ? "medium" : "large"}
+                  size={isXsScreen ? "small" : isSmScreen ? "medium" : "large"}
                   sx={{
-                    fontSize: { xs: "12px", sm: "14px", md: "16px", lg: "20px" },
+                    fontSize: {
+                      xs: "0.75rem",
+                      sm: "0.875rem",
+                      md: "1rem",
+                      lg: "1.25rem",
+                    },
                     py: { xs: 0.75, sm: 1, md: 1.25, lg: 1.5 },
                     px: { xs: 1.5, sm: 2, md: 3, lg: 4 },
-                    minWidth: { xs: "120px", sm: "140px", md: "160px", lg: "180px" },
+                    minWidth: {
+                      xs: "120px",
+                      sm: "140px",
+                      md: "160px",
+                      lg: "180px",
+                    },
                   }}
                 >
-                  Empiece su exploración matemática
+                  Comenzar
                 </Button>
               </CardContent>
             </Card>
-          </Grid>
-          <Grid item xs={12} md={2} lg={2}>
-            {/* Este elemento de la cuadrícula se mantiene para fines de diseño, pero está vacío */}
           </Grid>
         </Grid>
       </Container>
