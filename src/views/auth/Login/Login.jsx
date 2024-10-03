@@ -9,6 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import Spinner from '../../spinner/Spinner';
 import { darken } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import PageContainer from '../../../components/container/PageContainer';
@@ -30,7 +31,7 @@ const Login = () => {
   }, [user, navigate]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (user) {
