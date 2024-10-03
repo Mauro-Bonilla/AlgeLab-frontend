@@ -10,7 +10,6 @@ import {
   Typography,
   Avatar,
   Button,
-  Drawer,
 } from '@mui/material';
 import { darken, useTheme } from '@mui/material/styles';
 import { useAuth } from '../../../context/AuthContext/AuthContext';
@@ -18,7 +17,6 @@ import ProfileDropdown from './ProfileDropdown';
 
 const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
   const [anchorEl4, setAnchorEl4] = useState(null);
-  const [showDrawer2, setShowDrawer2] = useState(false);
 
   const theme = useTheme();
 
@@ -30,10 +28,6 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
 
   const handleClose4 = () => {
     setAnchorEl4(null);
-  };
-
-  const handleDrawerClose2 = () => {
-    setShowDrawer2(false);
   };
 
   const displayName = user
@@ -52,7 +46,6 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
       className={customClass}
     >
       <Toolbar>
-        {/* Sidebar toggle buttons */}
         <IconButton
           edge="start"
           color="inherit"
@@ -100,62 +93,8 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
           />
         </IconButton>
 
-        {/* Drawer for mobile view (optional) */}
-        <Drawer
-          anchor="top"
-          open={showDrawer2}
-          onClose={handleDrawerClose2}
-          sx={{
-            '& .MuiDrawer-paper': {
-              padding: '15px 30px',
-            },
-          }}
-        >
-          <Box display="flex" alignItems="center">
-            <Box sx={{ ml: 'auto' }}>
-              <IconButton
-                color="inherit"
-                sx={{
-                  color: theme.palette.grey.A200,
-                  '&:hover': {
-                    backgroundColor: darken(theme.palette.primary.main, 0.3),
-                  },
-                }}
-                onClick={handleDrawerClose2}
-              >
-                <FeatherIcon icon="x-circle" />
-              </IconButton>
-            </Box>
-          </Box>
-        </Drawer>
+        <Box flexGrow={1} />
 
-        {/* Title */}
-        <Box display="flex" alignItems="center" sx={{ flexGrow: 1 }}>
-          <Typography
-            variant="h3"
-            component="div"
-            sx={{
-              ml: 2,
-              fontSize: {
-                xs: '0.7rem',
-                sm: '0.7rem',
-                md: '1.25rem',
-                lg: '1.5rem',
-              },
-              fontWeight: 'bold',
-              color: '#ffffff',
-            }}
-          >
-            Plataforma de aprendizaje - AlgeLab
-          </Typography>
-
-          <Box flexGrow={1} />
-
-          {/* User Info */}
-          <Box sx={{ ml: 3, display: 'flex', flexDirection: 'column' }}></Box>
-        </Box>
-
-        {/* User Avatar and Name */}
         <Button
           aria-label="menu"
           color="inherit"
