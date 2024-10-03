@@ -71,7 +71,7 @@ const Home = () => {
                     letterSpacing: { xs: 0.5, sm: 1, md: 1.5 },
                   }}
                 >
-                  APRENDIZAJE DE LABORATORIOS DE CONTENEDORES VIRTUALES
+                  Explore AlgeLab
                 </Typography>
                 <Typography
                   sx={{
@@ -94,7 +94,8 @@ const Home = () => {
                     lineHeight: { xs: 1.4, sm: 1.5, md: 1.6 },
                   }}
                 >
-                  Explore el álgebra lineal a través de laboratorios interactivos.
+                  Transforme su comprensión del álgebra lineal.
+                  Laboratorios virtuales y lecturas interactivas para una experiencia inmersiva.
                 </Typography>
                 <Button
                   variant="outlined"
@@ -108,7 +109,7 @@ const Home = () => {
                     minWidth: { xs: "120px", sm: "140px", md: "160px", lg: "180px" },
                   }}
                 >
-                  Explorar AlgeLab
+                  Empiece su exploración matemática
                 </Button>
               </CardContent>
             </Card>

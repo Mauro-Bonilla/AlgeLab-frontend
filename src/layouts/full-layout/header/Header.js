@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import FeatherIcon from "feather-icons-react";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import FeatherIcon from 'feather-icons-react';
 import {
   AppBar,
   Box,
@@ -11,19 +11,18 @@ import {
   Avatar,
   Button,
   Drawer,
-} from "@mui/material";
-import PropTypes from "prop-types";
-// Dropdown Component
-import ProfileDropdown from "./ProfileDropdown";
-import userimg from "../../../assets/images/users/user-1.svg";
-import { darken, useTheme } from "@mui/material/styles";
+} from '@mui/material';
+import { darken, useTheme } from '@mui/material/styles';
+import { useAuth } from '../../../context/AuthContext/AuthContext';
+import ProfileDropdown from './ProfileDropdown';
 
 const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
-  const [anchorEl4, setAnchorEl4] = React.useState(null);
+  const [anchorEl4, setAnchorEl4] = useState(null);
   const [showDrawer2, setShowDrawer2] = useState(false);
-  
 
   const theme = useTheme();
+
+  const { user, logout } = useAuth();
 
   const handleClick4 = (event) => {
     setAnchorEl4(event.currentTarget);
@@ -37,6 +36,11 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
     setShowDrawer2(false);
   };
 
+  const displayName = user
+    ? user.first_name || user.last_name
+      ? `${user.first_name} ${user.last_name}`
+      : user.username
+    : '';
 
   return (
     <AppBar
@@ -48,81 +52,10 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
       className={customClass}
     >
       <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={toggleSidebar}
-          size="large"
-          sx={{
-            display: {
-              lg: "flex",
-              xs: "none",
-            },
-            "&:hover": {
-              backgroundColor: darken(theme.palette.primary.main,0.3),
-            },
-          }}
-        >
-          <FeatherIcon
-            icon="menu"
-            width="20"
-            height="20"
-            style={{ color: "#ffffff" }}
-          />
-        </IconButton>
+        {/* Sidebar toggle buttons */}
+        {/* ... your existing code ... */}
 
-        <IconButton
-          size="large"
-          color="inherit"
-          aria-label="menu"
-          onClick={toggleMobileSidebar}
-          sx={{
-            display: {
-              lg: "none",
-              xs: "flex",
-            },
-            "&:hover": {
-              backgroundColor: darken(theme.palette.primary.main,0.3),
-            },
-          }}
-        >
-          <FeatherIcon
-            icon="menu"
-            width="20"
-            height="20"
-            style={{ color: "#ffffff" }}
-          />
-        </IconButton>
-
-
-        <Drawer
-          anchor="top"
-          open={showDrawer2}
-          onClose={handleDrawerClose2}
-          sx={{
-            "& .MuiDrawer-paper": {
-              padding: "15px 30px",
-            },
-          }}
-        >
-          <Box display="flex" alignItems="center">
-            <Box sx={{ ml: "auto" }}>
-              <IconButton
-                color="inherit"
-                sx={{
-                  color: (theme) => theme.palette.grey.A200,"&:hover": {
-                    backgroundColor: darken(theme.palette.primary.main,0.3),
-                  },
-                }}
-                onClick={handleDrawerClose2}
-              >
-                <FeatherIcon icon="x-circle" />
-              </IconButton>
-            </Box>
-          </Box>
-        </Drawer>
-
+        {/* Title */}
         <Box display="flex" alignItems="center" sx={{ flexGrow: 1 }}>
           <Typography
             variant="h3"
@@ -130,13 +63,13 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
             sx={{
               ml: 2,
               fontSize: {
-                xs: "0.7rem",
-                sm: "0.7rem",
-                md: "1.25rem",
-                lg: "1.5rem",
+                xs: '0.7rem',
+                sm: '0.7rem',
+                md: '1.25rem',
+                lg: '1.5rem',
               },
-              fontWeight: "bold",
-              color: "#ffffff",
+              fontWeight: 'bold',
+              color: '#ffffff',
             }}
           >
             Plataforma de aprendizaje - AlgeLab
@@ -144,38 +77,39 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
 
           <Box flexGrow={1} />
 
-          <Box sx={{ ml: 3, display: "flex", flexDirection: "column" }}>
-          </Box>
+          {/* User Info */}
+          <Box sx={{ ml: 3, display: 'flex', flexDirection: 'column' }}></Box>
         </Box>
 
+        {/* User Avatar and Name */}
         <Button
-          aria-label="menu" 
+          aria-label="menu"
           color="inherit"
           aria-controls="profile-menu"
           aria-haspopup="true"
           onClick={handleClick4}
           sx={{
-            "&:hover": {
-             backgroundColor: darken(theme.palette.primary.main,0.5),
+            '&:hover': {
+              backgroundColor: darken(theme.palette.primary.main, 0.5),
             },
           }}
         >
           <Box display="flex" alignItems="center">
             <Avatar
-              src={userimg}
-              alt="user"
+              src={user && user.avatar_url ? user.avatar_url : undefined}
+              alt={user && user.username ? user.username : 'user'}
               sx={{
-                width: "30px",
-                height: "30px",
+                width: '30px',
+                height: '30px',
               }}
             />
             <Box
               sx={{
                 display: {
-                  xs: "none",
-                  sm: "flex",
+                  xs: 'none',
+                  sm: 'flex',
                 },
-                alignItems: "center",
+                alignItems: 'center',
               }}
             >
               <Typography
@@ -183,17 +117,17 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
                 fontWeight="700"
                 sx={{
                   ml: 1,
-                  fontSize: { xs: "0.875rem", sm: "1rem", md: "1.25rem" },
-                  color: "#ffffff",
+                  fontSize: { xs: '0.875rem', sm: '1rem', md: '1.25rem' },
+                  color: '#ffffff',
                 }}
               >
-                Mauro Bonilla
+                {displayName}
               </Typography>
               <FeatherIcon
                 icon="chevron-down"
                 width="20"
                 height="20"
-                style={{ color: "#ffffff" }}
+                style={{ color: '#ffffff' }}
               />
             </Box>
           </Box>
@@ -205,39 +139,36 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
           open={Boolean(anchorEl4)}
           onClose={handleClose4}
           sx={{
-            "& .MuiMenu-paper": {
-              width: "385px",
+            '& .MuiMenu-paper': {
+              width: '385px',
               right: 0,
-              top: "70px !important",
+              top: '70px !important',
             },
-            "& .MuiList-padding": {
-              p: "30px",
+            '& .MuiList-padding': {
+              p: '30px',
             },
           }}
         >
           <Box sx={{ mb: 1 }}>
             <ProfileDropdown />
-            <Link
-              style={{
-                textDecoration: "none",
+            <Button
+              sx={{
+                mt: 2,
+                display: 'block',
+                width: '100%',
+                '&:hover': {
+                  backgroundColor: darken(theme.palette.primary.main, 0.5),
+                },
               }}
-              to="/anh-algelab/auth/login"
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                handleClose4();
+                logout();
+              }}
             >
-              <Button
-                sx={{
-                  mt: 2,
-                  display: "block",
-                  width: "100%",
-                  "&:hover": {
-                    backgroundColor: darken(theme.palette.primary.main,0.5),
-                  },
-                }}
-                variant="contained"
-                color="primary"
-              >
-                Cerrar sesión
-              </Button>
-            </Link>
+              Cerrar sesión
+            </Button>
           </Box>
         </Menu>
       </Toolbar>
