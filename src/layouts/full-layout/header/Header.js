@@ -53,7 +53,81 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
     >
       <Toolbar>
         {/* Sidebar toggle buttons */}
-        {/* ... your existing code ... */}
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleSidebar}
+          size="large"
+          sx={{
+            display: {
+              lg: 'flex',
+              xs: 'none',
+            },
+            '&:hover': {
+              backgroundColor: darken(theme.palette.primary.main, 0.3),
+            },
+          }}
+        >
+          <FeatherIcon
+            icon="menu"
+            width="20"
+            height="20"
+            style={{ color: '#ffffff' }}
+          />
+        </IconButton>
+
+        <IconButton
+          size="large"
+          color="inherit"
+          aria-label="menu"
+          onClick={toggleMobileSidebar}
+          sx={{
+            display: {
+              lg: 'none',
+              xs: 'flex',
+            },
+            '&:hover': {
+              backgroundColor: darken(theme.palette.primary.main, 0.3),
+            },
+          }}
+        >
+          <FeatherIcon
+            icon="menu"
+            width="20"
+            height="20"
+            style={{ color: '#ffffff' }}
+          />
+        </IconButton>
+
+        {/* Drawer for mobile view (optional) */}
+        <Drawer
+          anchor="top"
+          open={showDrawer2}
+          onClose={handleDrawerClose2}
+          sx={{
+            '& .MuiDrawer-paper': {
+              padding: '15px 30px',
+            },
+          }}
+        >
+          <Box display="flex" alignItems="center">
+            <Box sx={{ ml: 'auto' }}>
+              <IconButton
+                color="inherit"
+                sx={{
+                  color: theme.palette.grey.A200,
+                  '&:hover': {
+                    backgroundColor: darken(theme.palette.primary.main, 0.3),
+                  },
+                }}
+                onClick={handleDrawerClose2}
+              >
+                <FeatherIcon icon="x-circle" />
+              </IconButton>
+            </Box>
+          </Box>
+        </Drawer>
 
         {/* Title */}
         <Box display="flex" alignItems="center" sx={{ flexGrow: 1 }}>
@@ -179,8 +253,8 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
 Header.propTypes = {
   sx: PropTypes.object,
   customClass: PropTypes.string,
-  toggleSidebar: PropTypes.func,
-  toggleMobileSidebar: PropTypes.func,
+  toggleSidebar: PropTypes.func.isRequired,
+  toggleMobileSidebar: PropTypes.func.isRequired,
 };
 
 export default Header;
