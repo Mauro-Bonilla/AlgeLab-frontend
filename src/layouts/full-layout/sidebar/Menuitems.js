@@ -17,9 +17,9 @@ const Menuitems = [
     href: "Dashboard",
   },
   {
-    title: "Log-in",
-    icon: "log-in",
-    href: "/anh-algelab/auth/login",
+    title: "Lecciones",
+    icon: "book-open",
+    href: "/anh-algelab/lecciones",
   }
 ];
 

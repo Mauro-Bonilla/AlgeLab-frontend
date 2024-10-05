@@ -93,6 +93,24 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
           />
         </IconButton>
 
+        <Typography
+          variant="h3"
+          component="div"
+          sx={{
+            ml: 2,
+            fontSize: {
+              xs: '0.7rem',
+              sm: '0.7rem',
+              md: '1.25rem',
+              lg: '1.5rem',
+            },
+            fontWeight: 'bold',
+            color: '#ffffff',
+          }}
+        >
+          AlgeLab : aprendizaje activo
+        </Typography>
+
         <Box flexGrow={1} />
 
         <Button

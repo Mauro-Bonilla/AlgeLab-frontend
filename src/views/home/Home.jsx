@@ -20,7 +20,7 @@ const Home = () => {
   const isMdScreen = useMediaQuery(theme.breakpoints.only("md"));
 
   const handleNavigateClick = () => {
-    navigate("/anh-algelab/laboratorios/");
+    navigate("/anh-algelab/lecciones/");
   };
 
   return (

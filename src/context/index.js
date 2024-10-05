@@ -1,11 +1,16 @@
 import { AlertProvider } from "./AlertContext/AlertContext";
 import { AuthProvider } from "./AuthContext/AuthContext";
+import { LessonsProvider } from "./LessonsContext/LessonsContext";
 import PropTypes from "prop-types";
 
 const AppProviders = ({ children }) => {
   return (
     <AlertProvider>
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        <LessonsProvider>
+          {children}
+        </LessonsProvider>
+      </AuthProvider>
     </AlertProvider>
   );
 };

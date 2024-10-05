@@ -59,7 +59,7 @@ const baseTheme = {
     action: {
       disabledBackground: 'rgba(73,82,88,0.12)',
       hoverOpacity: 0.02,
-      hover: 'rgba(215, 40, 47, 0.5)',
+      hover: 'rgba(211, 211, 211, 1)',
     },
   },
   shape: {
