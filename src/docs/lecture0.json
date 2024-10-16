@@ -1,0 +1,64 @@
+{
+    "id": "0",
+    "title": "Introducción a Algelab",
+    "units": [
+      {
+        "id": "0.1",
+        "title": "¿Qué es Algelab?",
+        "body": "Algelab es una plataforma educativa diseñada para ayudarte a aprender álgebra lineal de manera interactiva y efectiva. Utiliza tecnología avanzada para proporcionar una experiencia de aprendizaje única y personalizada.\n\n- Aprendizaje interactivo\n- Ejercicios prácticos\n- Visualizaciones 3D",
+        "image": "/path/to/algelab-image.jpg",
+        "quiz": {
+          "title": "Quiz: ¿Qué es Algelab?",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "single",
+              "text": "¿Cuál es el principal objetivo de Algelab?",
+              "options": [
+                "Enseñar programación",
+                "Enseñar álgebra lineal",
+                "Enseñar cálculo",
+                "Enseñar estadística"
+              ],
+              "correctAnswer": "Enseñar álgebra lineal"
+            },
+            {
+              "id": "q2",
+              "type": "multiple",
+              "text": "¿Qué características ofrece Algelab? (Selecciona todas las que apliquen)",
+              "options": [
+                "Aprendizaje interactivo",
+                "Ejercicios prácticos",
+                "Visualizaciones 3D",
+                "Clases presenciales"
+              ],
+              "correctAnswers": ["Aprendizaje interactivo", "Ejercicios prácticos", "Visualizaciones 3D"]
+            }
+          ]
+        }
+      },
+      {
+        "id": "0.2",
+        "title": "Funcionalidades principales de Algelab",
+        "body": "Algelab ofrece una variedad de características para mejorar tu experiencia de aprendizaje. Estas incluyen:\n\n1. Lecciones interactivas\n2. Ejercicios prácticos\n3. Visualizaciones 3D de conceptos algebraicos",
+        "video": "/path/to/algelab-features.mp4",
+        "quiz": {
+          "title": "Quiz: Funcionalidades de Algelab",
+          "questions": [
+            {
+              "id": "q1",
+              "type": "multiple",
+              "text": "¿Cuáles son las funcionalidades principales de Algelab?",
+              "options": [
+                "Lecciones interactivas",
+                "Ejercicios prácticos",
+                "Visualizaciones 3D",
+                "Exámenes presenciales"
+              ],
+              "correctAnswers": ["Lecciones interactivas", "Ejercicios prácticos", "Visualizaciones 3D"]
+            }
+          ]
+        }
+      }
+    ]
+  }

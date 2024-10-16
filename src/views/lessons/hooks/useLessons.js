@@ -1,8 +1,10 @@
 import { useContext, useCallback } from 'react';
 import { LessonsContext } from '../../../context/LessonsContext/LessonsContext';
+import { useNavigate } from 'react-router-dom';
 
 export const useLessons = () => {
   const { lessons, setLessons, navigationHistory, setNavigationHistory } = useContext(LessonsContext);
+  const navigate = useNavigate();
 
   const handleNavigate = useCallback((subtema) => {
     setLessons(prevLessons => {
@@ -13,11 +15,9 @@ export const useLessons = () => {
               let newPoints = sub.puntos;
               let newStatus = sub.estado;
 
-              // Check if this is the first navigation
               if (!navigationHistory[sub.id]) {
-                newPoints += 10;
+                newPoints += 5;
                 newStatus = 'En proceso';
-                // Update navigation history
                 setNavigationHistory(prev => ({ ...prev, [sub.id]: true }));
               }
 
@@ -26,7 +26,6 @@ export const useLessons = () => {
             return sub;
           });
 
-          // Check if all subtemas are completed
           const allCompleted = updatedSubtemas.every(sub => sub.estado === 'Terminado');
           const totalPoints = updatedSubtemas.reduce((sum, sub) => sum + sub.puntos, 0);
 
@@ -39,13 +38,11 @@ export const useLessons = () => {
         }
         return lesson;
       });
-
       return updatedLessons;
     });
 
-    // Here you would typically navigate to the lesson content
-    console.log(`Navigating to lesson: ${subtema.lessonId}, subtema: ${subtema.id}`);
-  }, [setLessons, navigationHistory, setNavigationHistory]);
+    navigate(`/anh-algelab/lecciones/${subtema.id}`);
+  }, [setLessons, navigationHistory, setNavigationHistory, navigate]);
 
   const completeSubtema = useCallback((subtemaId, lessonId) => {
     setLessons(prevLessons => {
@@ -58,7 +55,6 @@ export const useLessons = () => {
             return sub;
           });
 
-          // Check if all subtemas are completed
           const allCompleted = updatedSubtemas.every(sub => sub.estado === 'Terminado');
           const totalPoints = updatedSubtemas.reduce((sum, sub) => sum + sub.puntos, 0);
 

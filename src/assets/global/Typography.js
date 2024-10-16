@@ -4,7 +4,7 @@ const typography = {
       fontWeight: 400, // or 'bold'
     },
     h1: {
-      fontWeight: 500,
+      fontWeight: 800,
       fontSize: '1.875rem',
       lineHeight: '1.5',
     },

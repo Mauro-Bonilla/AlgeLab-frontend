@@ -11,6 +11,7 @@ const BlankLayout = Loadable(React.lazy(() => import('../layouts/blank-layout/Bl
 // Pages
 const Home = Loadable(React.lazy(() => import('../views/home/Home')));
 const Lessons = Loadable(React.lazy(() => import('../views/lessons/Lessons')));
+const Lecture = Loadable(React.lazy(() => import('../views/lectures/Lectures')));
 
 // Auth
 const Login = Loadable(React.lazy(() => import('../views/auth/Login/Login')));
@@ -41,6 +42,7 @@ const Router = [
     ),
     children: [
       { path: 'lecciones', element: <Lessons /> },
+      { path: 'lecciones/:idLecture', element: <Lecture /> },
     ],
   },
   {

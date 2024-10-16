@@ -1,10 +1,19 @@
+// src/views/lessons/Lessons.jsx
+
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, Typography, Divider, Box } from "@mui/material";
 import CollapsibleTable from "../../components/tables/CollapsiobleTable";
 import { columns, expandedColumns } from "./constants/LessonsConstants";
-import { useLessons } from "./hooks/useLessons";
+import { LessonsContext } from '../../context/LessonsContext/LessonsContext';
 
 const Lessons = () => {
-  const { lessons, handleNavigate } = useLessons();
+  const { lessons } = useContext(LessonsContext);
+  const navigate = useNavigate();
+
+  const handleNavigate = (subtema) => {
+    navigate(`/anh-algelab/lecciones/${subtema.lessonId}`);
+  };
 
   return (
     <Box sx={{ m: 2 }}>
