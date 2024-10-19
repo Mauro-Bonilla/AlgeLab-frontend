@@ -1,12 +1,12 @@
 // src/views/lectures/Lectures.jsx
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Box, Card, CardContent, Typography, Button, Chip, Tooltip, IconButton } from '@mui/material';
+import { Box, Card, CardContent, Button, Tooltip, IconButton, Typography, CircularProgress } from '@mui/material';
+import { styled } from '@mui/system';
+import { ArrowLeft } from 'react-feather';
 import UnitDropdown from '../../components/unit-dropdown/UnitDropdown';
 import { LessonsContext } from '../../context/LessonsContext/LessonsContext';
 import LectureContent from './components/LectureContent';
-import { styled } from '@mui/system';
-import { ArrowLeft } from 'react-feather';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: '800px',
@@ -46,57 +46,75 @@ const CircularIconButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const Lectures = () => {
-  const { idLecture } = useParams();
+  const { lessonId, unitId } = useParams();
   const navigate = useNavigate();
-  const { lessons, setLessons, content } = useContext(LessonsContext);
+  const { lessons, updateLessonProgress, content, fetchContent } = useContext(LessonsContext);
   const [currentUnit, setCurrentUnit] = useState(0);
-  const [lectureContent, setLectureContent] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (content && content[idLecture]) {
-      setLectureContent(content[idLecture]);
-    }
-  }, [idLecture, content]);
+    console.log('Lectures component mounted');
+    console.log('Params:', { lessonId, unitId });
+
+    const loadContent = async () => {
+      setIsLoading(true);
+      if (lessonId && unitId) {
+        await fetchContent(lessonId, unitId);
+        const lesson = lessons.find(l => l.id === lessonId);
+        if (lesson) {
+          const unitIndex = lesson.subtemas.findIndex(s => s.id === unitId);
+          if (unitIndex !== -1) {
+            setCurrentUnit(unitIndex);
+          }
+        }
+      }
+      setIsLoading(false);
+    };
+
+    loadContent();
+  }, [lessonId, unitId, lessons, fetchContent]);
 
   const handleUnitChange = (unitIndex) => {
-    setCurrentUnit(unitIndex);
+    const lesson = lessons.find(l => l.id === lessonId);
+    if (lesson && lesson.subtemas[unitIndex]) {
+      navigate(`/anh-algelab/lecciones/${lessonId}/${lesson.subtemas[unitIndex].id}`);
+    }
   };
 
   const handleNextUnit = () => {
-    if (currentUnit < lectureContent.units.length - 1) {
-      setCurrentUnit(currentUnit + 1);
+    const lesson = lessons.find(l => l.id === lessonId);
+    if (lesson && currentUnit < lesson.subtemas.length - 1) {
+      const nextUnit = lesson.subtemas[currentUnit + 1];
+      navigate(`/anh-algelab/lecciones/${lessonId}/${nextUnit.id}`);
     } else {
       console.log('Lecture completed');
+      navigate('/anh-algelab/lecciones');
     }
   };
 
   const handleQuizComplete = (isCorrect) => {
     if (isCorrect) {
-      setLessons(prevLessons => {
-        return prevLessons.map(lesson => {
-          if (lesson.id === idLecture) {
-            const updatedSubtemas = lesson.subtemas.map(subtema => {
-              if (subtema.id === lectureContent.units[currentUnit].id) {
-                return { ...subtema, estado: 'Terminado', puntos: subtema.puntos + 100 };
-              }
-              return subtema;
-            });
-            const allCompleted = updatedSubtemas.every(sub => sub.estado === 'Terminado');
-            const totalPoints = updatedSubtemas.reduce((sum, sub) => sum + sub.puntos, 0);
-            return { 
-              ...lesson, 
-              subtemas: updatedSubtemas,
-              estado: allCompleted ? 'Terminado' : 'En proceso',
-              puntos: totalPoints
-            };
-          }
-          return lesson;
-        });
-      });
+      updateLessonProgress(lessonId, unitId);
     }
   };
 
-  if (!lectureContent) return <Typography>Cargando...</Typography>;
+  const currentLesson = lessons.find(l => l.id === lessonId);
+  const lectureContent = content[lessonId] && content[lessonId][unitId];
+
+  console.log('Current lesson:', currentLesson);
+  console.log('Lecture content:', lectureContent);
+
+  if (isLoading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (!currentLesson || !lectureContent) {
+    return <Typography>No se pudo cargar el contenido de la lección.</Typography>;
+  }
 
   return (
     <Box sx={{ m: 2 }}>
@@ -107,27 +125,21 @@ const Lectures = () => {
           </CircularIconButton>
         </Tooltip>
         <UnitDropdown
-          units={lectureContent.units}
+          units={currentLesson.subtemas}
           currentUnit={currentUnit}
           onUnitChange={handleUnitChange}
         />
-        <Button 
-          variant="contained" 
+        <Button
+          variant="contained"
           onClick={handleNextUnit}
         >
-          Siguiente
+          {currentUnit < currentLesson.subtemas.length - 1 ? 'Siguiente' : 'Finalizar'}
         </Button>
       </TopBar>
       <StyledCard>
         <CardContent>
-          <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-            <Typography variant="h1" gutterBottom>
-              {lectureContent.units[currentUnit].title}
-            </Typography>
-            <Chip label="100 XP" color="success" />
-          </Box>
-          <LectureContent 
-            content={lectureContent.units[currentUnit]}
+          <LectureContent
+            content={lectureContent}
             onQuizComplete={handleQuizComplete}
           />
         </CardContent>

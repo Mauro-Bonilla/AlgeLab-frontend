@@ -27,8 +27,8 @@ const UnitDropdown = ({ units, currentUnit, onUnitChange }) => {
         displayEmpty
       >
         {units.map((unit, index) => (
-          <MenuItem key={index} value={index}>
-            Unidad {index + 1} de {units.length}
+          <MenuItem key={unit.id} value={index}>
+            Unidad {index + 1}: {unit.subtema}
           </MenuItem>
         ))}
       </StyledSelect>

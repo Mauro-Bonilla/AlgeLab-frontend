@@ -1,5 +1,3 @@
-// src/context/LessonsContext/LessonsContext.js
-
 import React, { createContext, useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
@@ -39,111 +37,10 @@ const initialLessons = [
   },
 ];
 
-const mockContent = {
-  '0': {
-    id: '0',
-    title: 'Introducción a Algelab',
-    units: [
-      {
-        id: '0.1',
-        title: '¿Qué es Algelab?',
-        body: 'Algelab es una plataforma educativa diseñada para ayudarte a aprender álgebra lineal de manera interactiva y efectiva. Utiliza tecnología avanzada para proporcionar una experiencia de aprendizaje única y personalizada.',
-        image: '/path/to/algelab-image.jpg',
-        bullets: [
-          'Aprendizaje interactivo',
-          'Ejercicios prácticos',
-          'Visualizaciones 3D'
-        ],
-        quiz: {
-          title: 'Quiz: ¿Qué es Algelab?',
-          questions: [
-            {
-              id: 'q1',
-              type: 'single',
-              text: '¿Cuál es el principal objetivo de Algelab?',
-              options: [
-                'Enseñar programación',
-                'Enseñar álgebra lineal',
-                'Enseñar cálculo',
-                'Enseñar estadística'
-              ],
-              correctAnswer: 'Enseñar álgebra lineal'
-            },
-            {
-              id: 'q2',
-              type: 'multiple',
-              text: '¿Qué características ofrece Algelab? (Selecciona todas las que apliquen)',
-              options: [
-                'Aprendizaje interactivo',
-                'Ejercicios prácticos',
-                'Visualizaciones 3D',
-                'Clases presenciales'
-              ],
-              correctAnswers: ['Aprendizaje interactivo', 'Ejercicios prácticos', 'Visualizaciones 3D']
-            }
-          ]
-        }
-      },
-      {
-        id: '0.2',
-        title: 'Funcionalidades principales de Algelab',
-        body: 'Algelab ofrece una variedad de características para mejorar tu experiencia de aprendizaje. Estas incluyen lecciones interactivas, ejercicios prácticos, y visualizaciones 3D de conceptos algebraicos.',
-        video: '/path/to/algelab-features.mp4',
-        quiz: {
-          title: 'Quiz: Funcionalidades de Algelab',
-          questions: [
-            {
-              id: 'q1',
-              type: 'multiple',
-              text: '¿Cuáles son las funcionalidades principales de Algelab?',
-              options: [
-                'Lecciones interactivas',
-                'Ejercicios prácticos',
-                'Visualizaciones 3D',
-                'Exámenes presenciales'
-              ],
-              correctAnswers: ['Lecciones interactivas', 'Ejercicios prácticos', 'Visualizaciones 3D']
-            }
-          ]
-        }
-      }
-    ]
-  },
-  '1': {
-    id: '1',
-    title: 'Espacios vectoriales',
-    units: [
-      {
-        id: '1.1',
-        title: 'Definición y ejemplos',
-        body: 'Un espacio vectorial es una estructura algebraica formada por un conjunto no vacío de objetos llamados vectores, en el que están definidas dos operaciones: la suma de vectores y el producto de un escalar por un vector...',
-        image: '/path/to/vector-space-image.jpg',
-        quiz: {
-          title: 'Quiz: Espacios vectoriales',
-          questions: [
-            {
-              id: 'q1',
-              type: 'single',
-              text: '¿Qué es un espacio vectorial?',
-              options: [
-                'Un conjunto de números',
-                'Una estructura algebraica con vectores y operaciones definidas',
-                'Un tipo de gráfico',
-                'Una fórmula matemática'
-              ],
-              correctAnswer: 'Una estructura algebraica con vectores y operaciones definidas'
-            }
-          ]
-        }
-      }
-    ]
-  }
-};
-
 export const LessonsProvider = ({ children }) => {
   const [lessons, setLessons] = useState(initialLessons);
   const [navigationHistory, setNavigationHistory] = useState({});
-  const [content, setContent] = useState(mockContent);
+  const [content, setContent] = useState({});
 
   useEffect(() => {
     const storedLessons = localStorage.getItem('lessons');
@@ -157,12 +54,62 @@ export const LessonsProvider = ({ children }) => {
     localStorage.setItem('navigationHistory', JSON.stringify(navigationHistory));
   }, [lessons, navigationHistory]);
 
-  const value = useMemo(() => ({ 
-    lessons, 
-    setLessons, 
-    navigationHistory, 
+  const fetchContent = async (lessonId, unitId) => {
+    console.log('Fetching content for:', { lessonId, unitId });
+    if (!content[lessonId] || !content[lessonId][unitId]) {
+      try {
+        // Updated fetch URL to match the file path
+        const response = await fetch(`/docs/lecture-${lessonId}/lecture${unitId}.md`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const text = await response.text();
+        console.log('Fetched content:', text);
+        setContent(prevContent => ({
+          ...prevContent,
+          [lessonId]: {
+            ...prevContent[lessonId],
+            [unitId]: text
+          }
+        }));
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    }
+  };
+
+  const updateLessonProgress = (lessonId, unitId, points = 100) => {
+    setLessons(prevLessons => {
+      return prevLessons.map(lesson => {
+        if (lesson.id === lessonId) {
+          const updatedSubtemas = lesson.subtemas.map(subtema => {
+            if (subtema.id === unitId) {
+              return { ...subtema, estado: 'Terminado', puntos: subtema.puntos + points };
+            }
+            return subtema;
+          });
+          const allCompleted = updatedSubtemas.every(sub => sub.estado === 'Terminado');
+          const totalPoints = updatedSubtemas.reduce((sum, sub) => sum + sub.puntos, 0);
+          return {
+            ...lesson,
+            subtemas: updatedSubtemas,
+            estado: allCompleted ? 'Terminado' : 'En proceso',
+            puntos: totalPoints
+          };
+        }
+        return lesson;
+      });
+    });
+  };
+
+  const value = useMemo(() => ({
+    lessons,
+    setLessons,
+    navigationHistory,
     setNavigationHistory,
-    content
+    content,
+    fetchContent,
+    updateLessonProgress
   }), [lessons, navigationHistory, content]);
 
   return (
@@ -175,3 +122,5 @@ export const LessonsProvider = ({ children }) => {
 LessonsProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default LessonsProvider;

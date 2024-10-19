@@ -1,4 +1,5 @@
 // src/views/lessons/constants/LessonsConstants.js
+import React from 'react';
 import { Chip, Button, Avatar, Box, Typography } from '@mui/material';
 import { useTheme, alpha } from '@mui/material/styles';
 

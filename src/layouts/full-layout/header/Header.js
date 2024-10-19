@@ -108,7 +108,7 @@ const Header = ({ sx, customClass, toggleSidebar, toggleMobileSidebar }) => {
             color: '#ffffff',
           }}
         >
-          AlgeLab : aprendizaje activo
+          ALGELAB: APRENDIZAJE ACTIVO
         </Typography>
 
         <Box flexGrow={1} />

@@ -1,5 +1,4 @@
 // src/views/lectures/components/Quiz.jsx
-
 import React, { useState } from 'react';
 import { Box, Typography, Radio, RadioGroup, FormControlLabel, Button, Checkbox } from '@mui/material';
 
@@ -76,4 +75,4 @@ const Quiz = ({ quiz, onComplete }) => {
   );
 };
 
-export default Quiz;  // Add this line to export the component as default
+export default Quiz;

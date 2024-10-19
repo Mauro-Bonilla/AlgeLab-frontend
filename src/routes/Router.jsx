@@ -1,3 +1,4 @@
+// src/routes/Router.js
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full-layout/loadable/Loadable';
@@ -42,7 +43,7 @@ const Router = [
     ),
     children: [
       { path: 'lecciones', element: <Lessons /> },
-      { path: 'lecciones/:idLecture', element: <Lecture /> },
+      { path: 'lecciones/:lessonId/:unitId', element: <Lecture /> },
     ],
   },
   {

@@ -1,9 +1,15 @@
 // src/views/lectures/components/LectureContent.jsx
-import React from 'react';
-import { Typography, Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Chip } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import Quiz from './Quiz';
 import { styled } from '@mui/system';
+import Quiz from './Quiz';
+import { parseMarkdownContent } from '../../../utils/markdownParser';
+
+// Import the necessary plugins and CSS for rendering LaTeX
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 
 const StyledContent = styled(Box)(({ theme }) => ({
   '& img': {
@@ -25,23 +31,36 @@ const StyledContent = styled(Box)(({ theme }) => ({
     paddingLeft: theme.spacing(3),
     marginBottom: theme.spacing(2),
   },
+  // Additional styles for math equations
+  '& .katex-display': {
+    margin: theme.spacing(2, 0),
+  },
 }));
 
 const LectureContent = ({ content, onQuizComplete }) => {
+  const [parsedContent, setParsedContent] = useState({ title: '', markdown: '', quiz: null });
+
+  useEffect(() => {
+    const parsed = parseMarkdownContent(content);
+    console.log('Parsed content:', parsed);
+    setParsedContent(parsed);
+  }, [content]);
+
   return (
     <StyledContent>
-      <ReactMarkdown>{content.body}</ReactMarkdown>
-      {content.image && (
-        <Box component="img" src={content.image} alt={content.title} />
-      )}
-      {content.video && (
-        <Box component="video" controls>
-          <source src={content.video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </Box>
-      )}
-      {content.quiz && (
-        <Quiz quiz={content.quiz} onComplete={onQuizComplete} />
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <Typography variant="h1" gutterBottom>
+          {parsedContent.title || 'Lecture Title'}
+        </Typography>
+        <Chip label="100 XP" color="success" />
+      </Box>
+      <ReactMarkdown
+        children={parsedContent.markdown}
+        remarkPlugins={[remarkMath]}
+        rehypePlugins={[rehypeKatex]}
+      />
+      {parsedContent.quiz && (
+        <Quiz quiz={parsedContent.quiz} onComplete={onQuizComplete} />
       )}
     </StyledContent>
   );
