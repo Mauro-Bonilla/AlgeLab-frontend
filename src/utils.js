@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000', // Update this to match your backend URL
+  baseURL: import.meta.env.VITE_API_URL, // Use environment variable for backend URL
   withCredentials: true,
 });
 
