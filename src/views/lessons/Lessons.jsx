@@ -20,7 +20,7 @@ const Lessons = () => {
               let newStatus = sub.estado;
 
               if (!navigationHistory[sub.id]) {
-                newPoints += 5;
+                newPoints += 0;
                 newStatus = 'En proceso';
                 setNavigationHistory(prev => ({ ...prev, [sub.id]: true }));
               }
