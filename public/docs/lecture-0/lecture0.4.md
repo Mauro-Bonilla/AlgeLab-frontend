@@ -1,47 +1,35 @@
-# ¿Qué es Algelab?
+# Introducción a Laboratorios en Codespaces
+Este módulo te introducirá al entorno de desarrollo que utilizaremos para nuestros ejercicios prácticos.
 
-Algelab es una plataforma educativa diseñada para ayudarte a aprender álgebra lineal de manera interactiva y efectiva. Utiliza tecnología avanzada para proporcionar una experiencia de aprendizaje única y personalizada.
+## Acceso al Laboratorio
+1. Da click en el botón "Abrir en GitHub Codespaces" al final de esta página
+2. Selecciona el archivo `Ejercicio1.ipynb` en el explorador de archivos
 
-## Características principales
+## Uso de Jupyter Notebooks
+* Las notebooks combinan código ejecutable con texto explicativo
+* Para ejecutar una celda de código:
+  - Presiona el botón ▶️ a la izquierda de la celda
+  - O usa el atajo `Shift + Enter`
+* Las celdas se ejecutan en orden secuencial
+* Espera a que cada celda termine de ejecutar antes de continuar
 
-- Aprendizaje interactivo
-- Ejercicios prácticos
-- Visualizaciones 3D
+## Contenido del Laboratorio
+El notebook `Ejercicio1.ipynb` contiene:
+* Introducción a Python básico
+* Variables y tipos de datos
+* Operaciones fundamentales
+* Introducción a NumPy
+* Ejercicios prácticos
 
-![Algelab Interface](/path/to/algelab-image.jpg)
+## Recomendaciones
+* Ejecuta las celdas en orden
+* Lee cuidadosamente las explicaciones
+* Experimenta modificando el código de ejemplo
+* Completa todos los ejercicios propuestos
 
-## ¿Por qué elegir Algelab?
-
-Algelab ofrece una experiencia de aprendizaje única que combina la teoría del álgebra lineal con aplicaciones prácticas y visualizaciones interactivas.
-
----quiz---
-{
-  "title": "Quiz: ¿Qué es Algelab?",
-  "questions": [
-    {
-      "id": "q1",
-      "type": "single",
-      "text": "¿Cuál es el principal objetivo de Algelab?",
-      "options": [
-        "Enseñar programación",
-        "Enseñar álgebra lineal",
-        "Enseñar cálculo",
-        "Enseñar estadística"
-      ],
-      "correctAnswer": "Enseñar álgebra lineal"
-    },
-    {
-      "id": "q2",
-      "type": "multiple",
-      "text": "¿Qué características ofrece Algelab? (Selecciona todas las que apliquen)",
-      "options": [
-        "Aprendizaje interactivo",
-        "Ejercicios prácticos",
-        "Visualizaciones 3D",
-        "Clases presenciales"
-      ],
-      "correctAnswers": ["Aprendizaje interactivo", "Ejercicios prácticos", "Visualizaciones 3D"]
-    }
-  ]
-}
----end quiz---
+## Configuracion para Entorno Virtual
+Selecciona la configuración que indica la imagen
+![Modelo de procesamiento cognitivo dual](/public/lectures-media/Create_codespace.png)
+---lab---
+https://github.com/Mauro-Bonilla/AlgeLab-laboratorio-0.git
+---end lab---

@@ -13,10 +13,8 @@ const initialLessons = [
     subtemas: [
       { id: '0.1', no: '0.1', subtema: '¿Qué es Algelab?', estado: 'No iniciado', puntos: 0, lessonId: '0' },
       { id: '0.2', no: '0.2', subtema: 'Funcionalidades principales de Algelab', estado: 'No iniciado', puntos: 0, lessonId: '0' },
-      { id: '0.3', no: '0.3', subtema: 'Introducción a los vectores', estado: 'No iniciado', puntos: 0, lessonId: '0' },
-      { id: '0.4', no: '0.4', subtema: 'Definición básica', estado: 'No iniciado', puntos: 0, lessonId: '0' },
-      { id: '0.5', no: '0.5', subtema: 'Operaciones fundamentales', estado: 'No iniciado', puntos: 0, lessonId: '0' },
-      { id: '0.6', no: '0.6', subtema: 'Laboratorio de vectores', estado: 'No iniciado', puntos: 0, lessonId: '0' },
+      { id: '0.3', no: '0.3', subtema: 'Aprendizaje multimedia y aprendizaje activo', estado: 'No iniciado', puntos: 0, lessonId: '0' },
+      { id: '0.4', no: '0.4', subtema: 'Ejemplo de Laboratorio', estado: 'No iniciado', puntos: 0, lessonId: '0' },
     ]
   },
   {

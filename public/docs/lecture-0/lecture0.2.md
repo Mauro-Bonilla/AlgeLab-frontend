@@ -1,44 +1,41 @@
 # Funcionalidades principales de Algelab
 
-Algelab es una plataforma educativa diseñada para ayudarte a aprender álgebra lineal de manera interactiva y efectiva. Utiliza tecnología avanzada para proporcionar una experiencia de aprendizaje única y personalizada.
+## Sistema de aprendizaje
 
-## Características principales
+- Laboratorios virtuales con GitHub Codespaces
+- Evaluaciones interactivas
+- Sistema de puntos por logros
+- Retroalimentación "Gamificada"
 
-- Aprendizaje interactivo
-- Ejercicios prácticos
-- Visualizaciones 3D
+## Herramientas disponibles
 
-
-
-## ¿Por qué elegir Algelab?
-
-Algelab ofrece una experiencia de aprendizaje única que combina la teoría del álgebra lineal con aplicaciones prácticas y visualizaciones interactivas.
-$$
-\mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^n u_i v_i
-$$
-
-
-
+1. Editor de código integrado homologado
+2. Visualizador de gráficos matemáticos
+3. Sistema de evaluación automática
+4. Laboratorios con ejercicios prácticos
 
 ***
 
-
-
 ---quiz---
 {
-  "title": "Quiz: ¿Qué es Algelab?",
+  "title": "Quiz",
   "questions": [
     {
       "id": "q1",
-      "type": "single",
-      "text": "¿Cuál es el principal objetivo de Algelab?",
+      "type": "multiple",
+      "text": "¿Qué herramientas ofrece Algelab?",
       "options": [
-        "Enseñar programación",
-        "Enseñar álgebra lineal",
-        "Enseñar cálculo",
-        "Enseñar estadística"
+        "Editor de código integrado",
+        "Visualizador de gráficos",
+        "Sistema de evaluación",
+        "Editor de video"
       ],
-      "correctAnswer": "Enseñar álgebra lineal"
+      "correctAnswers": [
+        "Editor de código integrado",
+        "Visualizador de gráficos",
+        "Sistema de evaluación"
+      ],
+      "points": 100
     }
   ]
 }

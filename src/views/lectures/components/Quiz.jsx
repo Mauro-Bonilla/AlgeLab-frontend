@@ -42,7 +42,7 @@ const MatchingQuestion = ({ question, onMatch }) => {
       
       <Box sx={{ display: 'flex', gap: 4 }}>
         {/* Left Column - Fixed */}
-        <Box sx={{ width: '200px' }}>
+        <Box sx={{ width: '250px' }}>
           {question.pairs.map((pair) => (
             <Paper
               key={pair.left}
@@ -71,7 +71,7 @@ const MatchingQuestion = ({ question, onMatch }) => {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 sx={{ 
-                  width: '200px',
+                  width: '400px',
                   minHeight: '100%'
                 }}
               >
