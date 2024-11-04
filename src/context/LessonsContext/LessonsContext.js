@@ -29,7 +29,7 @@ const initialLessons = [
       { id: '1.3', no: '1.3', subtema: 'Combinación lineales y sistemas generadores', estado: 'No iniciado', puntos: 0, lessonId: '1' },
       { id: '1.4', no: '1.4', subtema: 'Independencia lineal', estado: 'No iniciado', puntos: 0, lessonId: '1' },
       { id: '1.5', no: '1.5', subtema: 'Bases y dimensión', estado: 'No iniciado', puntos: 0, lessonId: '1' },
-      { id: '1.6', no: '1.6', subtema: 'Laboratorio ', estado: 'No iniciado', puntos: 0, lessonId: '1' },
+      { id: '1.6', no: '1.6', subtema: 'Laboratorio', estado: 'No iniciado', puntos: 0, lessonId: '1' },
     ]
   },
 ];

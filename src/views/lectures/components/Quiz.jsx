@@ -18,7 +18,128 @@ import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 
 const MatchingQuestion = ({ question, onMatch }) => {
-  // ... (Same as before)
+  const [items, setItems] = useState([]);
+  const [isCorrect, setIsCorrect] = useState(false);
+
+  useEffect(() => {
+    setItems(
+      question.pairs
+        .map((pair) => pair.right)
+        .sort(() => Math.random() - 0.5)
+    );
+  }, [question]);
+
+  const handleDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const newItems = Array.from(items);
+    const [reorderedItem] = newItems.splice(result.source.index, 1);
+    newItems.splice(result.destination.index, 0, reorderedItem);
+    setItems(newItems);
+
+    const correct = newItems.every(
+      (item, index) => item === question.pairs[index].right
+    );
+    setIsCorrect(correct);
+    onMatch(question.id, correct);
+  };
+
+  return (
+    <Box sx={{ mt: 3 }}>
+      <Typography variant="h6" sx={{ mb: 3, fontWeight: 'bold' }}>
+        Relaciona las columnas
+      </Typography>
+
+      <Box sx={{ display: 'flex', gap: 4 }}>
+        {/* Columna Izquierda - Fija */}
+        <Box sx={{ width: '250px' }}>
+          {question.pairs.map((pair, index) => (
+            <Paper
+              key={`left-${index}`}
+              elevation={3}
+              sx={{
+                p: 2,
+                mb: 2,
+                textAlign: 'center',
+                bgcolor: 'background.paper',
+                minHeight: '50px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Typography>
+                <ReactMarkdown
+                  children={pair.left}
+                  remarkPlugins={[remarkMath]}
+                  rehypePlugins={[rehypeKatex]}
+                />
+              </Typography>
+            </Paper>
+          ))}
+        </Box>
+
+        {/* Columna Derecha - Draggable */}
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="droppable-list">
+            {(provided, snapshot) => (
+              <Box
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                sx={{
+                  width: '400px',
+                  minHeight: '100%',
+                }}
+              >
+                {items.map((item, index) => (
+                  <Draggable
+                    key={`right-${index}`}
+                    draggableId={`item-${index}`}
+                    index={index}
+                  >
+                    {(provided, snapshot) => (
+                      <Paper
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        elevation={snapshot.isDragging ? 6 : 3}
+                        sx={{
+                          mb: 2,
+                          p: 2,
+                          textAlign: 'center',
+                          bgcolor: snapshot.isDragging
+                            ? 'lightgrey'
+                            : 'background.paper',
+                          cursor: 'grab',
+                          minHeight: '50px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          '&:hover': {
+                            bgcolor: 'rgba(0, 0, 0, 0.05)',
+                          },
+                          userSelect: 'none',
+                        }}
+                      >
+                        <Typography>
+                          <ReactMarkdown
+                            children={item}
+                            remarkPlugins={[remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                          />
+                        </Typography>
+                      </Paper>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </Box>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </Box>
+    </Box>
+  );
 };
 
 const Quiz = ({ quiz, onComplete }) => {
@@ -29,33 +150,39 @@ const Quiz = ({ quiz, onComplete }) => {
 
   const handleAnswerChange = (questionId, answer, isMultiple) => {
     if (isMultiple) {
-      setAnswers(prev => ({
+      setAnswers((prev) => ({
         ...prev,
-        [questionId]: { ...(prev[questionId] || {}), [answer]: !prev[questionId]?.[answer] }
+        [questionId]: {
+          ...(prev[questionId] || {}),
+          [answer]: !prev[questionId]?.[answer],
+        },
       }));
     } else {
-      setAnswers(prev => ({ ...prev, [questionId]: answer }));
+      setAnswers((prev) => ({ ...prev, [questionId]: answer }));
     }
   };
 
   const handleMatch = (questionId, isCorrect) => {
-    setCompletedQuestions(prev => ({
+    setCompletedQuestions((prev) => ({
       ...prev,
-      [questionId]: isCorrect
+      [questionId]: isCorrect,
     }));
   };
 
   const handleSubmit = () => {
     let score = 0;
-    quiz.questions.forEach(question => {
+    quiz.questions.forEach((question) => {
       let isCorrect = false;
       const questionPoints = question.points || 1;
 
       switch (question.type) {
         case 'multiple':
           const userAnswers = answers[question.id] || {};
-          isCorrect = question.correctAnswers.every(ca => userAnswers[ca]) &&
-                      Object.keys(userAnswers).every(ua => question.correctAnswers.includes(ua));
+          isCorrect =
+            question.correctAnswers.every((ca) => userAnswers[ca]) &&
+            Object.keys(userAnswers).every((ua) =>
+              question.correctAnswers.includes(ua)
+            );
           break;
 
         case 'single':
@@ -72,7 +199,11 @@ const Quiz = ({ quiz, onComplete }) => {
 
       if (isCorrect) {
         score += questionPoints;
-        showAlert(`¡Correcto! Has ganado ${questionPoints} puntos`, 'success', 2000);
+        showAlert(
+          `¡Correcto! Has ganado ${questionPoints} puntos`,
+          'success',
+          2000
+        );
       } else {
         showAlert(`Respuesta incorrecta.`, 'error', 2000);
       }
@@ -87,13 +218,15 @@ const Quiz = ({ quiz, onComplete }) => {
       case 'multiple':
         return (
           <FormGroup>
-            {question.options.map(option => (
+            {question.options.map((option) => (
               <FormControlLabel
                 key={option}
                 control={
                   <Checkbox
                     checked={answers[question.id]?.[option] || false}
-                    onChange={() => handleAnswerChange(question.id, option, true)}
+                    onChange={() =>
+                      handleAnswerChange(question.id, option, true)
+                    }
                   />
                 }
                 label={
@@ -112,9 +245,11 @@ const Quiz = ({ quiz, onComplete }) => {
         return (
           <RadioGroup
             value={answers[question.id] || ''}
-            onChange={(e) => handleAnswerChange(question.id, e.target.value, false)}
+            onChange={(e) =>
+              handleAnswerChange(question.id, e.target.value, false)
+            }
           >
-            {question.options.map(option => (
+            {question.options.map((option) => (
               <FormControlLabel
                 key={option}
                 value={option}
@@ -132,12 +267,7 @@ const Quiz = ({ quiz, onComplete }) => {
         );
 
       case 'matching':
-        return (
-          <MatchingQuestion
-            question={question}
-            onMatch={handleMatch}
-          />
-        );
+        return <MatchingQuestion question={question} onMatch={handleMatch} />;
 
       default:
         return null;
@@ -152,7 +282,7 @@ const Quiz = ({ quiz, onComplete }) => {
         sx={{
           fontWeight: 'bold',
           fontSize: '1.7rem',
-          mb: 4
+          mb: 4,
         }}
       >
         <ReactMarkdown
@@ -162,7 +292,7 @@ const Quiz = ({ quiz, onComplete }) => {
         />
       </Typography>
 
-      {quiz.questions.map(question => (
+      {quiz.questions.map((question) => (
         <Box key={question.id} mb={4}>
           <Box display="flex" alignItems="center" gap={2} mb={2}>
             <Typography variant="h6">
