@@ -1,7 +1,7 @@
 # 1.1 Introducción a Vectores
 
-![Vectores en múltiples dimensiones](manim_animation_vectors.gif)
-_La animación muestra la dualidad de los vectores: como puntos fijos y como flechas que representan cambios o movimientos._
+
+
 
 ## Vectores: Una Herramienta Versátil
 
@@ -17,6 +17,9 @@ Un vector es una herramienta matemática que puede entenderse de dos maneras:
    - Cada número mide algo específico
    - El orden es importante
    - Ejemplo: Coordenadas GPS [latitud, longitud]
+***
+![Vectores en múltiples dimensiones](/public/lectures-media/lecture1.1.gif)
+***
 
 > **Definición Formal**: Un elemento de Rⁿ es una lista ordenada de n números reales que puede interpretarse de dos formas:
 >

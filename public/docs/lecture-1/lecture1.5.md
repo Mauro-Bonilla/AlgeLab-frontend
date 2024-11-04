@@ -1,8 +1,5 @@
 # 1.5 Bases y Dimensión
 
-![Bases Vectoriales](agregar un gif manim)
-*La animación muestra cómo diferentes bases pueden generar el mismo espacio: ilustra vectores linealmente independientes que generan todo un espacio y cómo diferentes conjuntos de vectores pueden generar el mismo espacio.*
-
 ## Las Bases como Herramientas Fundamentales
 
 ### Una Forma Natural de Ver Bases

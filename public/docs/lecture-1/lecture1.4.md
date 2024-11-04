@@ -1,8 +1,5 @@
 # 1.4 Independencia Lineal
 
-![Independencia Lineal](agregar un gif manim)
-*La animación muestra visualmente la diferencia entre vectores linealmente independientes y dependientes: ilustra cómo un vector dependiente puede escribirse como combinación de otros, mientras que los independientes no.*
-
 ## Idea Intuitiva: Flechas en el Plano
 
 ### Una Primera Mirada

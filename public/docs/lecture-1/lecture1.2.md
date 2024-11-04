@@ -22,20 +22,11 @@ Estas flechas tienen dos características importantes:
    - Mitad de velocidad = Flecha mitad de larga
    - $2(3\text{ derecha}, 2\text{ arriba}) = (6\text{ derecha}, 4\text{ arriba})$
 
-### Más Allá de las Flechas: Vectores en Todos Lados
-
-Los vectores aparecen en muchas situaciones:
-
-1. **En el clima:** 🌦️
-   - Temperatura de una semana: $(23°, 25°, 24°, 22°, 26°, 25°, 23°)$
-   - Suma: Combinar patrones climáticos
-   - Multiplicar por 2: Doble intensidad de cambio
-
-2. **En la economía:** 💰
-   - Precios de productos: $(50\text{ pan}, 30\text{ leche}, 20\text{ huevos})$
-   - Suma: Combinar carritos de compra
-   - Multiplicar por 3: Comprar triple cantidad
 ***
+![Vectores en múltiples dimensiones](/public/lectures-media/lecture1.2.gif)
+***
+
+
 ## La Matemática Detrás: Definiciones Formales
 
 > **Definición (Espacio Vectorial):** Un espacio vectorial sobre un campo $\mathbb{F}$ es un conjunto $V$ donde podemos:
