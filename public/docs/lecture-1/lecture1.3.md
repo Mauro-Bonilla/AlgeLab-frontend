@@ -36,7 +36,7 @@ Por ejemplo:
 > $$a_1v_1 + a_2v_2 + ... + a_mv_m$$
 > donde $a_1,...,a_m$ son escalares.
 
-### Ejemplo Visual con Pinturas
+### Ejemplo con Pinturas
 
 Para crear naranja:
 - 50% Amarillo Base + 50% Rojo Base + 0% Azul Base
@@ -51,7 +51,7 @@ Para crear morado:
 > **Definición (Sistema Generador):** El conjunto de todas las posibles combinaciones lineales de una lista de vectores $v_1,...,v_m$ se llama el generador de estos vectores, denotado como:
 > $$\text{Gen}(v_1,...,v_m) = \{a_1v_1 + ... + a_mv_m : a_1,...,a_m \in \mathbb{F}\}$$
 
-### En Términos de la Fábrica
+### En Términos del ejemplo
 - El generador de nuestros tres colores base representa **todos los colores posibles** que podemos crear
 - Si un color está en el generador, podemos fabricarlo
 - Si no está en el generador, necesitaríamos otros colores base
