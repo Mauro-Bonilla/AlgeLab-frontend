@@ -1,14 +1,70 @@
-.architect
-bootstrap.css
-bootstrap.js
-bootstrap.json
-bootstrap.jsonp
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build output
 build/
-classic.json
-classic.jsonp
-ext/
-modern.json
-modern.jsonp
-resources/sass/.sass-cache/
-resources/.arch-internal-preview.css
-.arch-internal-preview.css
+dist/
+out/
+.env*
+# Coverage directory used by testing tools
+coverage/
+
+# Mac system files
+.DS_Store
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.swp
+
+# eslint and stylelint cache files
+.eslintcache
+.stylelintcache
+
+# SASS cache
+.sass-cache/
+
+# React Native
+.expo/
+.expo-shared/
+
+# Parcel-bundler cache
+.cache/
+
+# Storybook files
+.storybook/
+storybook-static/
+
+# Miscellaneous
+*.log
+*.lock
+*.gz
+*.sql
+*.sqlite
+*.sqlite3
+
+# API keys and secrets
+api_keys.js
