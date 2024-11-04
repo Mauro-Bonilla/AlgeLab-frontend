@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Chip, Divider } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import { styled } from '@mui/system';
+import { styled, useTheme } from '@mui/system';
 import Quiz from './Quiz';
 import GitHubLabButton from './GitHubLabButton';
 import remarkMath from 'remark-math';
@@ -52,7 +52,6 @@ const BottomSection = styled(Box)(({ theme }) => ({
 
 // Markdown parser function
 const parseMarkdownContent = (content) => {
-  console.log('Raw content:', content);
   const titleRegex = /^#\s(.+)$/m;
   const quizRegex = /---quiz---([\s\S]*?)---end quiz---/;
   const labRegex = /---lab---([\s\S]*?)---end lab---/;
@@ -84,11 +83,11 @@ const parseMarkdownContent = (content) => {
 
   markdown = markdown.replace(titleRegex, '').trim();
 
-  console.log('Parsed content:', { title, markdown, quiz, labUrl });
   return { title, markdown, quiz, labUrl };
 };
 
 const LectureContent = ({ content, onQuizComplete }) => {
+  const theme = useTheme(); 
   const [parsedContent, setParsedContent] = useState({ 
     title: '', 
     markdown: '', 
@@ -136,7 +135,17 @@ const LectureContent = ({ content, onQuizComplete }) => {
           remarkPlugins={[remarkMath]}
           rehypePlugins={[rehypeKatex]}
           components={{
-            hr: ({ ...props }) => <Divider {...props} />
+            hr: ({ ...props }) => <Divider {...props} />,
+            blockquote: ({ node, ...props }) => (
+              <Box
+                {...props}
+                sx={{
+                  borderLeft: `4px solid ${theme.palette.primary.main}`,
+                  paddingLeft: theme.spacing(2),
+                  marginBottom: theme.spacing(2),
+                }}
+              />
+            ),
           }}
           breaks={true}
         />

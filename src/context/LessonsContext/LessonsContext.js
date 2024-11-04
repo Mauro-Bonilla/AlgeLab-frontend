@@ -20,17 +20,16 @@ const initialLessons = [
   {
     id: '1',
     no: '1',
-    tema: 'Espacios vectoriales',
+    tema: 'Vectores y espacios vectoriales',
     estado: 'No iniciado',
     puntos: 0,
     subtemas: [
-      { id: '1.1', no: '1.1', subtema: 'Definición y ejemplos', estado: 'No iniciado', puntos: 0, lessonId: '1' },
-      { id: '1.2', no: '1.2', subtema: 'Subespacios vectoriales', estado: 'No iniciado', puntos: 0, lessonId: '1' },
-      { id: '1.3', no: '1.3', subtema: 'Combinación lineal. Generadores', estado: 'No iniciado', puntos: 0, lessonId: '1' },
+      { id: '1.1', no: '1.1', subtema: 'Vectores: Introducción', estado: 'No iniciado', puntos: 0, lessonId: '1' },
+      { id: '1.2', no: '1.2', subtema: 'Espacios y subespacios vectoriales', estado: 'No iniciado', puntos: 0, lessonId: '1' },
+      { id: '1.3', no: '1.3', subtema: 'Combinación lineales y sistemas generadores', estado: 'No iniciado', puntos: 0, lessonId: '1' },
       { id: '1.4', no: '1.4', subtema: 'Independencia lineal', estado: 'No iniciado', puntos: 0, lessonId: '1' },
       { id: '1.5', no: '1.5', subtema: 'Bases y dimensión', estado: 'No iniciado', puntos: 0, lessonId: '1' },
-      { id: '1.6', no: '1.6', subtema: 'Los cuatro espacios fundamentales de una matriz', estado: 'No iniciado', puntos: 0, lessonId: '1' },
-      { id: '1.7', no: '1.7', subtema: 'Aplicación a sistemas de ecuaciones', estado: 'No iniciado', puntos: 0, lessonId: '1' },
+      { id: '1.6', no: '1.6', subtema: 'Laboratorio ', estado: 'No iniciado', puntos: 0, lessonId: '1' },
     ]
   },
 ];
