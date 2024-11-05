@@ -17,9 +17,12 @@ Un vector es una herramienta matemática que puede entenderse de dos maneras:
    - Cada número mide algo específico
    - El orden es importante
    - Ejemplo: Coordenadas GPS [latitud, longitud]
+
+
 ***
+### Visualización explicativa de vectores en el plano cartesiano
 ![Vectores en múltiples dimensiones](/lectures-media/lecture1.1.gif)
-***ñ
+***
 
 > **Definición Formal**: Un elemento de Rⁿ es una lista ordenada de n números reales que puede interpretarse de dos formas:
 >

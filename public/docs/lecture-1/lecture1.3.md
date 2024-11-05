@@ -20,6 +20,7 @@
    $$2(1,0,0) + 3(0,1,0) + (-1)(0,0,1)$$
 
 ***
+### Visualización de ejemplos de combinaciones lineales para los vectores $v$ y $w$
 ![Vectores en múltiples dimensiones](/lectures-media/lecture1.3.gif)
 ***
 

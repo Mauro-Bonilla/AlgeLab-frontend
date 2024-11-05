@@ -22,6 +22,7 @@ Estas flechas tienen dos características importantes:
    
 
 ***
+### Visualización del espacio vectorial en $\mathbb{R}^2$ y un subespacio en $\mathbb{R}^1$
 ![Vectores en múltiples dimensiones](/lectures-media/lecture1.2.gif)
 ***
 
@@ -31,6 +32,7 @@ Estas flechas tienen dos características importantes:
 > 2. Multiplicar por números: $c\mathbf{v}$ está en $V$ para cualquier número $c$ y vector $\mathbf{v}$
 ***
 ## Axiomas
+***
 
 Como en todo juego, hay reglas que se deben seguir:
 
