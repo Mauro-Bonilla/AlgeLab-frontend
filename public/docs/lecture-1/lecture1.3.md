@@ -20,7 +20,7 @@
    $$2(1,0,0) + 3(0,1,0) + (-1)(0,0,1)$$
 
 ***
-![Vectores en múltiples dimensiones](/public/lectures-media/lecture1.3.gif)
+![Vectores en múltiples dimensiones](/lectures-media/lecture1.3.gif)
 ***
 
 ### Sistema Generador

@@ -18,14 +18,16 @@ Un vector es una herramienta matemática que puede entenderse de dos maneras:
    - El orden es importante
    - Ejemplo: Coordenadas GPS [latitud, longitud]
 ***
-![Vectores en múltiples dimensiones](/public/lectures-media/lecture1.1.gif)
-***
+![Vectores en múltiples dimensiones](/lectures-media/lecture1.1.gif)
+***ñ
 
 > **Definición Formal**: Un elemento de Rⁿ es una lista ordenada de n números reales que puede interpretarse de dos formas:
 >
 > 1. Como un punto x = (x₁,...,xₙ) que representa una posición
 > 2. Como un vector x̄ = [x₁,...,xₙ] que representa un incremento o desplazamiento
 >    (Hubbard & Hubbard, 2015, p.29)
+
+***
 
 ### Del Mundo Físico al Mundo de los Datos
 
@@ -86,6 +88,8 @@ Un vector es una herramienta matemática que puede entenderse de dos maneras:
 
 - Como punto: estado actual del clima
 - Como vector: cambio climático en 24h
+
+****
 
 ---quiz---
 {

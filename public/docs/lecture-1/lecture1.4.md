@@ -2,7 +2,6 @@
 
 ## Idea Intuitiva: Flechas en el Plano
 
-### Una Primera Mirada
 Imagina un conjunto de flechas en un plano:
 
 **Flechas Básicas:**
@@ -19,7 +18,7 @@ La flecha diagonal es "linealmente dependiente" porque:
 - Es redundante: ↗️ = ➡️ + ⬆️
 
 ## Definiciones Formales
-
+***
 ### Independencia Lineal
 
 > **Definición** 
@@ -27,17 +26,16 @@ La flecha diagonal es "linealmente dependiente" porque:
 > $$a_1v_1 + ... + a_mv_m = 0$$
 > es $a_1 = ... = a_m = 0$
 > - La lista vacía ( ) es linealmente independiente
-
+***
 ### Dependencia Lineal
 
 > **Definición**
 > - Una lista de vectores en $V$ es **linealmente dependiente** si no es linealmente independiente
 > - De manera equivalente, una lista $v_1,...,v_m$ es linealmente dependiente si existen escalares $a_1,...,a_m \in \mathbb{F}$, no todos cero, tales que:
 > $$a_1v_1 + ... + a_mv_m = 0$$
-
 ***
 
-## Ejemplos Matemáticos
+## Ejemplos
 
 ### En $\mathbb{R}^2$
 
@@ -65,7 +63,7 @@ La flecha diagonal es "linealmente dependiente" porque:
    - $v_2 = (0,1,0)$
    - $v_3 = (1,1,0)$
    - Porque: $v_3 = v_1 + v_2$
-
+***
 ### En Espacios de Polinomios
 1. **Lista Independiente en $\mathcal{P}_2$:**
    - $p_1(x) = 1$
@@ -78,32 +76,19 @@ La flecha diagonal es "linealmente dependiente" porque:
    - $p_3(x) = x^2$
    - $p_4(x) = 1 + x$
    - Porque: $p_4 = p_1 + p_2$
-
+***
 ## El Lema Fundamental
 
 > **Lema (Dependencia Lineal)**
 > Si una lista $v_1,...,v_m$ es linealmente dependiente, entonces existe $k \in \{1,...,m\}$ tal que:
 > - $v_k$ está en el generador de $\{v_1,...,v_{k-1}\}$
+***
+### Forma Intuitiva de verlo
 
-### Demostración Intuitiva
 - Si los vectores son dependientes
 - Alguno puede escribirse usando los anteriores
 - Ese vector es "redundante"
-
-## Propiedades Importantes
-
-1. **Un Solo Vector:**
-   - Es independiente ⟺ no es el vector cero
-   
-2. **Dos Vectores:**
-   - Son independientes ⟺ ninguno es múltiplo del otro
-
-3. **Tres o más Vectores:**
-   - Son independientes ⟺ ninguno está en el generador de los otros
-
-4. **Número Máximo:**
-   - En $\mathbb{R}^n$: máximo $n$ vectores independientes
-   - En $\mathcal{P}_n$: máximo $n+1$ vectores independientes
+***
 
 ---quiz---
 {
@@ -132,31 +117,13 @@ La flecha diagonal es "linealmente dependiente" porque:
 }
 ],
 "points": 100
-},
-{
-"id": "q2",
-"type": "multiple",
-"text": "Seleccione las afirmaciones verdaderas",
-"options": [
-"La lista vacía es linealmente independiente",
-"Un conjunto con el vector cero es siempre dependiente",
-"Dos vectores paralelos son dependientes",
-"En R³, cinco vectores son siempre dependientes"
-],
-"correctAnswers": [
-"La lista vacía es linealmente independiente",
-"Un conjunto con el vector cero es siempre dependiente",
-"Dos vectores paralelos son dependientes",
-"En R³, cinco vectores son siempre dependientes"
-],
-"points": 100
 }
 ]
 }
 ---end quiz---
 
 ## Para Recordar
-- Independencia significa que ningún vector sobra
+- Independencia significa que ningún vector "sobra"
 - Dependencia implica redundancia
 - El número máximo de vectores independientes es la dimensión
 - La lista vacía es independiente por definición

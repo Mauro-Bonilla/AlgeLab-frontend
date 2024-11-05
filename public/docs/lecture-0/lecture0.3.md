@@ -9,7 +9,7 @@ El aprendizaje multimedia se fundamenta en la teoría cognitiva que establece do
 
 > **Nota importante**: Aunque el texto escrito se percibe visualmente, se procesa a través del canal verbal, ya que representa información lingüística que debe ser decodificada y procesada como lenguaje (Mayer, 2014, p. 47).
 
-![Modelo de procesamiento cognitivo dual](/public/lectures-media/multimedia_learning_diagram.png)
+![Modelo de procesamiento cognitivo dual](/lectures-media/multimedia_learning_diagram.png)
 
 ## Principios Cognitivos Fundamentales
 

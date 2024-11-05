@@ -1,11 +1,6 @@
 # 1.2 Espacios y Subespacios Vectoriales
 
-![Espacios vectoriales](manim_vector_spaces.gif)
-*La animación ilustra cómo los vectores viven en espacios vectoriales: muestra flechas sumándose, multiplicándose por números, y cómo algunos conjuntos (como líneas por el origen) forman subespacios mientras otros (como círculos) no.*
-
 ## Introducción: Un Primer Vistazo a los Espacios Vectoriales
-
-### La Historia de las Flechas y los Números
 
 Imagina que estás jugando un videojuego donde tu personaje se mueve en todas direcciones. Cada movimiento puede verse como una flecha:
 - ↗ Moverse en diagonal arriba-derecha
@@ -15,25 +10,27 @@ Imagina que estás jugando un videojuego donde tu personaje se mueve en todas di
 Estas flechas tienen dos características importantes:
 1. **Puedes combinarlas (sumarlas)**:
    - Ir derecha y luego arriba = Ir en diagonal
+
    - $(3\text{ derecha}, 0\text{ arriba}) + (0\text{ derecha}, 2\text{ arriba}) = (3\text{ derecha}, 2\text{ arriba})$
 
 2. **Puedes hacerlas más largas o más cortas (multiplicar por números)**:
    - Doble de rápido = Flecha dos veces más larga
-   - Mitad de velocidad = Flecha mitad de larga
    - $2(3\text{ derecha}, 2\text{ arriba}) = (6\text{ derecha}, 4\text{ arriba})$
 
+   - Mitad de velocidad = Flecha mitad de larga
+   - $0.5(3\text{ derecha}, 2\text{ arriba}) = (1.5\text{ derecha}, 1\text{ arriba})$
+   
+
 ***
-![Vectores en múltiples dimensiones](/public/lectures-media/lecture1.2.gif)
+![Vectores en múltiples dimensiones](/lectures-media/lecture1.2.gif)
 ***
 
 
-## La Matemática Detrás: Definiciones Formales
-
-> **Definición (Espacio Vectorial):** Un espacio vectorial sobre un campo $\mathbb{F}$ es un conjunto $V$ donde podemos:
+> **Definición Formal: Espacio Vectorial:** Un espacio vectorial sobre un campo $\mathbb{F}$ es un conjunto $V$ donde podemos:
 > 1. Sumar elementos: $\mathbf{u} + \mathbf{v}$ está en $V$ para cualquier $\mathbf{u}, \mathbf{v}$ en $V$
 > 2. Multiplicar por números: $c\mathbf{v}$ está en $V$ para cualquier número $c$ y vector $\mathbf{v}$
-
-### Las Reglas del Juego (Axiomas)
+***
+## Axiomas
 
 Como en todo juego, hay reglas que se deben seguir:
 
@@ -41,39 +38,39 @@ Como en todo juego, hay reglas que se deben seguir:
 
 Para todos los vectores $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$:
 
-1. Conmutatividad:
+i. Conmutatividad:
    $$\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$$ 
    *(puedes sumar en cualquier orden)*
 
-2. Asociatividad:
+ii. Asociatividad:
    $$(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$$ 
    *(puedes agrupar como quieras)*
 
-3. Elemento neutro:
+iii. Elemento neutro:
    $$\exists \mathbf{0} \text{ tal que } \mathbf{v} + \mathbf{0} = \mathbf{v}$$ 
    *(el cero no cambia nada)*
 
-4. Elemento inverso:
+iv. Elemento inverso:
    $$\exists (-\mathbf{v}) \text{ tal que } \mathbf{v} + (-\mathbf{v}) = \mathbf{0}$$ 
    *(cada vector tiene su opuesto)*
 
-2. **Reglas de la Multiplicación por Escalares:**
+2 **Reglas de la Multiplicación por Escalares:**
 
 Para todo vector $\mathbf{v} \in V$ y escalares $a,b \in \mathbb{F}$:
 
-1. Identidad:
+i. Identidad:
    $$1\mathbf{v} = \mathbf{v}$$ 
    *(multiplicar por 1 no cambia nada)*
 
-2. Asociatividad:
+ii. Asociatividad:
    $$(ab)\mathbf{v} = a(b\mathbf{v})$$ 
    *(puedes multiplicar en cualquier orden)*
 
-3. Distributividad sobre vectores:
+iii. Distributividad sobre vectores:
    $$a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}$$ 
    *(distribuye como números normales)*
 
-4. Distributividad sobre escalares:
+iv. Distributividad sobre escalares:
    $$(a + b)\mathbf{v} = a\mathbf{v} + b\mathbf{v}$$ 
    *(distribuye sobre la suma de escalares)*
 
@@ -84,7 +81,7 @@ Estas reglas nos aseguran que podemos:
 - Deshacer cualquier operación (usando inversos)
 
 > **Nota**: Estas propiedades son muy similares a las que ya conoces de los números reales. La diferencia es que ahora trabajamos con vectores.
-
+***
 ### Visualización en $\mathbb{R}^2$ (El Plano)
 
 Imagina el plano cartesiano que conoces:
@@ -95,7 +92,7 @@ Imagina el plano cartesiano que conoces:
   - Por negativo: Además invierte dirección
   - Por cero: Lleva al origen $(0,0)$
 ***
-## Subespacios: Los Subconjuntos Especiales
+## Subespacios vectoriales
 
 ### Intuición: ¿Qué es un Subespacio?
 
@@ -105,13 +102,12 @@ Piensa en un subespacio como un "mini espacio vectorial" dentro de uno más gran
 2. **Si contiene dos vectores, contiene su suma**
 3. **Si contiene un vector, contiene todos sus múltiplos**
 
-### Ejemplos Visuales:
+### Ejemploss:
 
 1. **En el plano $\mathbb{R}^2$:**
    - ✅ Una línea recta por el origen
    - ✅ Todo el plano
    - ✅ Solo el punto $(0,0)$
-   - ❌ Una línea que no pasa por $(0,0)$
    - ❌ Un círculo
    
    ¿Por qué el círculo no? ¡Si tomas un punto y lo multiplicas por 2, sale del círculo!
@@ -121,24 +117,14 @@ Piensa en un subespacio como un "mini espacio vectorial" dentro de uno más gran
    - ✅ Cualquier línea por el origen
    - ❌ Una esfera
    - ❌ Un cono sin la punta
-
+***
 ### La Definición Formal
 
 > **Definición (Subespacio):** Un subespacio $H$ de un espacio vectorial $V$ es un subconjunto de $V$ que cumple:
 > 1. $\mathbf{0} \in H$
 > 2. Si $\mathbf{u}, \mathbf{v} \in H$, entonces $\mathbf{u} + \mathbf{v} \in H$ (cerrado bajo suma)
 > 3. Si $a \in \mathbb{F}$ y $\mathbf{v} \in H$, entonces $a\mathbf{v} \in H$ (cerrado bajo multiplicación escalar)
-
-### Ejercicios Mentales
-
-1. ¿Por qué una línea que no pasa por el origen no es un subespacio?
-   - Toma dos puntos de la línea
-   - Súmalos... ¿el resultado está en la línea?
-   - Multiplica un punto por 0... ¿llegaste al origen?
-
-2. ¿El conjunto de vectores con coordenadas positivas es un subespacio?
-   - ¿Contiene al $\mathbf{0}$?
-   - ¿Si multiplicas por -1 te quedas en el conjunto?
+***
 
 ---quiz---
 {

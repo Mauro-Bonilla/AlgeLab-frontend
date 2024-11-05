@@ -6,7 +6,7 @@ Algelab es una plataforma educativa diseñada para ayudarte a aprender álgebra 
 
 - Aprendizaje interactivo
 - Ejercicios prácticos
-- Visualizaciones interactivas
+- Visualizaciones explicativas
 
 ## ¿Por qué elegir Algelab?
 
@@ -35,3 +35,7 @@ Algelab ofrece una experiencia de aprendizaje que combina la teoría del álgebr
   ]
 }
 ---end quiz---
+
+---lab---
+https://github.com/Mauro-Bonilla/AlgeLab-laboratorio-0.git
+---end lab---
