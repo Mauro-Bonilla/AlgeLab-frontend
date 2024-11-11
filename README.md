@@ -63,22 +63,63 @@ Detailed documentation is available in the `docs` directory:
 - [`lectures.md`](./docs/lectures.md) - Guide for adding new lectures and content structure
 - [`lessons_chart.md`](./docs/lessons_chart.md) - Learning path documentation and module organization
 
-## Adding New Lectures
+## Contributing Content
 
-To add new lectures to AlgeLab:
+### Adding New Lectures
 
-1. Review the lecture structure documentation in [`lectures.md`](./docs/lectures.md)
-2. Follow the learning path guidelines in [`lessons_chart.md`](./docs/lessons_chart.md)
-3. Contact project maintainers through Discord for content review
-4. Submit your additions through a pull request
+1. Create lecture files in the correct directory:
+```
+public/docs/lecture-N/           # N = module number
+├── lectureN.1.md               # First lecture
+├── lectureN.2.md               # Second lecture
+└── lectureN.3.md               # Third lecture
+```
 
-For detailed information about creating and adding new lectures, please consult the documentation linked above or contact the development team.
+2. Add media assets:
+```
+public/lectures-media/
+├── lectureN.1.gif              # Animations
+├── lectureN.2.png              # Images
+└── diagram.svg                 # Diagrams
+```
+
+3. Update module structure in `src/context/LessonsContext/LessonsContext.js`:
+```javascript
+{
+  id: 'N',
+  no: 'N',
+  tema: 'Your Module Title',
+  estado: 'No iniciado',
+  puntos: 0,
+  subtemas: [
+    {
+      id: 'N.1',
+      no: 'N.1',
+      subtema: 'First Lecture Title',
+      estado: 'No iniciado',
+      puntos: 0,
+      lessonId: 'N'
+    }
+    // Add more lectures...
+  ]
+}
+```
+
+For detailed guidelines on:
+- Lecture format and components
+- Quiz configuration
+- Lab integration
+- Media guidelines
+Please refer to [`lectures.md`](./docs/lectures.md)
+
+For module structure and organization, see [`lessons_chart.md`](./docs/lessons_chart.md)
 
 ## Related Repositories
 
 - [Backend (Django)](https://github.com/Mauro-Bonilla/practicum-II-backend)
 - [Animations](https://github.com/Mauro-Bonilla/practicum-II-animations)
 
+## Development
 
 ### Available Scripts
 ```bash
