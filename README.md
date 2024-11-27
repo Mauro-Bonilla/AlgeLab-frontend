@@ -17,14 +17,11 @@ The frontend application provides an interactive user interface for AlgeLab, imp
 - Real-time visualization components
 - GitHub authentication integration
 - Progress tracking interface
-- Responsive design
 - Module-based learning structure
 
 ## Tech Stack
 
 - **Framework**: React.js with Vite
-- **State Management**: React Context
-- **Styling**: CSS Modules
 - **HTTP Client**: Axios
 - **Container**: Docker
 - **Node Version**: 20.9.0
@@ -150,9 +147,6 @@ We welcome contributions! Please read our documentation for contribution guideli
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Research Paper
-
-This project is based on research conducted at Universidad Anáhuac México. For detailed information about the theoretical framework and educational principles, please refer to the original paper.
 
 ## Contact
 
